@@ -36,24 +36,39 @@ func main() {
 		fmt.Println("Enter Number of tickets")
 		fmt.Scan(&userTickets)
 
-		remainingTickets = remainingTickets - userTickets
-		// bookings[0] = firstName + " " + lastName
-		bookings = append(bookings, firstName+" "+lastName)
+		if userTickets < remainingTickets {
 
-		fmt.Printf("The Whole Slice:%v\n", bookings)
-		// fmt.Printf("The First value:%v\n", bookings[0])
-		// fmt.Printf("Slice Type:%T\n", bookings)
-		// fmt.Printf("Slice length:%v\n", len(bookings))
+			remainingTickets = remainingTickets - userTickets
+			// bookings[0] = firstName + " " + lastName
+			bookings = append(bookings, firstName+" "+lastName)
 
-		fmt.Printf("Thank you %v %v for booking the tickets %v , You will  receive a confiramtaions email at %v \n ", firstName, lastName, userTickets, email)
-		fmt.Printf("%v tickets remaining for %v\n", remainingTickets, conferncename)
-		firstNames := []string{}
+			fmt.Printf("The Whole Slice:%v\n", bookings)
+			// fmt.Printf("The First value:%v\n", bookings[0])
+			// fmt.Printf("Slice Type:%T\n", bookings)
+			// fmt.Printf("Slice length:%v\n", len(bookings))
 
-		for _, booking := range bookings {
-			var names = strings.Fields(booking)
-			firstNames = append(firstNames, names[0])
+			fmt.Printf("Thank you %v %v for booking the tickets %v , You will  receive a confiramtaions email at %v \n ", firstName, lastName, userTickets, email)
+			fmt.Printf("%v tickets remaining for %v\n", remainingTickets, conferncename)
+			firstNames := []string{}
+
+			for _, booking := range bookings {
+				var names = strings.Fields(booking)
+				firstNames = append(firstNames, names[0])
+			}
+			fmt.Printf("The first names of bookings are:%v\n", firstNames)
+
+			// noticketsRemaining  := remainingTickets == 0
+			if remainingTickets == 0 {
+				//end program
+				fmt.Println("our conferbce is booked out , Come back next year .")
+				break
+			}
+		} else if userTickets == remainingTickets {
+			//do  something else
+		} else {
+			fmt.Printf("we only have %v tickets remaining, so you can't book %v tickets\n", remainingTickets, userTickets)
+
 		}
-		fmt.Printf("The first names of bookings are:%v\n", firstNames)
 
 	}
 
